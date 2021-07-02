@@ -11,6 +11,7 @@ public interface CustomerDao {
 	public Collection<Customer> displayAllCustomer();
 	
 	public Customer findCustomerById(Integer id);
+	public Customer updateCustomer(Customer customer,Integer customerId);
 	
 	
 

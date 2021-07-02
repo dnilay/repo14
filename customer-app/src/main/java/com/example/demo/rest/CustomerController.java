@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -66,6 +67,12 @@ public class CustomerController {
 			throw new CustomerNotFoundException("customer with the "+id+" not found");
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.findCustomerById(id));
+	}
+	
+	@PutMapping("/api/customers/{customerId}")
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer,@PathVariable("customerId") Integer customerId)
+	{
+		return new ResponseEntity<Customer>(customerService.updateCustomer(customer, customerId),HttpStatus.OK);
 	}
 	
 	

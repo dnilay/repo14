@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.exception.CustomerNotFoundException;
 import com.example.demo.model.Customer;
 
 @Component
@@ -44,6 +45,20 @@ public class CustomerDaoImpl implements CustomerDao {
 	public Customer findCustomerById(Integer id) {
 		Customer customer = customerMap.get(id);
 		return customer;
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer,Integer customerId) {
+		// TODO Auto-generated method stub
+		Customer customer2=findCustomerById(customerId);
+		if(customer2==null)
+		{
+			throw new CustomerNotFoundException("customer with id "+customerId+" Not Found");
+		}
+		customer2.setFirstName(customer.getFirstName());
+		customer2.setLastName(customer.getLastName());
+		customer2.setEmail(customer.getEmail());
+		return customer2;
 	}
 
 }

@@ -9,7 +9,7 @@ public Customer createCustomer(Customer customer);
 	
 	public Collection<Customer> displayAllCustomer();
 	public Customer findCustomerById(Integer id);
-
+	public Customer updateCustomer(Customer customer,Integer customerId);
 
 
 }
