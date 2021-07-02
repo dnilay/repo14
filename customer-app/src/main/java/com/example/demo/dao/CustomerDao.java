@@ -11,5 +11,7 @@ public interface CustomerDao {
 	public Collection<Customer> displayAllCustomer();
 	
 	public Customer findCustomerById(Integer id);
+	
+	
 
 }

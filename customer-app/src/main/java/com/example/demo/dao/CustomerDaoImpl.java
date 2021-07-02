@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.model.Address;
 import com.example.demo.model.Customer;
 
 @Component
@@ -20,16 +19,18 @@ public class CustomerDaoImpl implements CustomerDao {
 	public CustomerDaoImpl(Map<Integer, Customer> customerMap) {
 
 		this.customerMap = customerMap;
-		customerMap.put(new Random().nextInt(1000), new Customer(UUID.randomUUID().toString(), "John", "Doe",
-				new Address("India", "Hyderabad", "john@email.com")));
-		customerMap.put(new Random().nextInt(1000), new Customer(UUID.randomUUID().toString(), "Marry", "Public",
-				new Address("India", "Mumbai", "marry@email.com")));
+		customerMap.put(new Random().nextInt(1000),
+				new Customer(UUID.randomUUID().toString(), "John", "Doe", "john#email.com"));
+		customerMap.put(new Random().nextInt(1000),
+				new Customer(UUID.randomUUID().toString(), "Marry", "Public", "marry@email.com"));
 		System.out.println(customerMap);
 	}
 
 	@Override
 	public Customer createCustomer(Customer customer) {
+		customer.setCustomerId(UUID.randomUUID().toString());
 		customerMap.put(new Random().nextInt(10000), customer);
+		System.out.println(customerMap);
 		return customer;
 	}
 
@@ -41,7 +42,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public Customer findCustomerById(Integer id) {
-		Customer customer=customerMap.get(id);
+		Customer customer = customerMap.get(id);
 		return customer;
 	}
 
