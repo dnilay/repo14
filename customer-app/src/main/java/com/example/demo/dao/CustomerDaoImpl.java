@@ -24,6 +24,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				new Address("India", "Hyderabad", "john@email.com")));
 		customerMap.put(new Random().nextInt(1000), new Customer(UUID.randomUUID().toString(), "Marry", "Public",
 				new Address("India", "Mumbai", "marry@email.com")));
+		System.out.println(customerMap);
 	}
 
 	@Override
@@ -36,6 +37,12 @@ public class CustomerDaoImpl implements CustomerDao {
 	public Collection<Customer> displayAllCustomer() {
 		// TODO Auto-generated method stub
 		return customerMap.values();
+	}
+
+	@Override
+	public Customer findCustomerById(Integer id) {
+		Customer customer=customerMap.get(id);
+		return customer;
 	}
 
 }
