@@ -11,5 +11,6 @@ public interface BeerService {
 	public BeerResponseModel createBeer(BeerRequestModel beerRequestModel);
 	public List<BeerResponseModel> displayAllBeer();
 	public List<BeerResponseModel> getBeerByName(String beerName);
+	public void deleteBeerByBeerId(String beerId);
 
 }

@@ -10,6 +10,7 @@ public interface BeerRepository {
 	public BeerResponseModel createBeer(BeerDto beer);
 	public List<BeerResponseModel> displayAllBeer();
 	public List<BeerResponseModel> getBeerByName(String beerName);
+	public void deleteBeerByBeerId(String beerId);
 	
 
 }

@@ -48,4 +48,10 @@ public class BeerServiceImpl implements BeerService {
 		return beerRepository.getBeerByName(beerName);
 	}
 
+	@Override
+	public void deleteBeerByBeerId(String beerId) {
+		beerRepository.deleteBeerByBeerId(beerId);
+		
+	}
+
 }

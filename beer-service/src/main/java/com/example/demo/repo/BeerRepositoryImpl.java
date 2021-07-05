@@ -81,4 +81,12 @@ public class BeerRepositoryImpl implements BeerRepository {
 		return beerResponseModelsList;
 	}
 
+	@Override
+	@Transactional
+	public void deleteBeerByBeerId(String beerId) {
+		Query query=entityManager.createQuery("delete  from Beer B where B.beerId=:bId ");
+		query.setParameter("bId", beerId);
+		query.executeUpdate();
+	}
+
 }

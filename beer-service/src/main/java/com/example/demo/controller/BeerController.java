@@ -8,6 +8,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,13 @@ public class BeerController {
 	public ResponseEntity<List<BeerResponseModel>> getBeerByName(@PathVariable("beerName") String beerName)
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(beerService.getBeerByName(beerName));
+	}
+	
+	@DeleteMapping("/api/beers/{beerId}")
+	public ResponseEntity<String> deleteBeer(@PathVariable("beerId") String beerId)
+	{
+		beerService.deleteBeerByBeerId(beerId);
+		return ResponseEntity.status(HttpStatus.OK).body("deleted");
 	}
 
 }
