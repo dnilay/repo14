@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Beer;
 import com.example.demo.service.BeerService;
+import com.example.demo.ui.BeerResponseModel;
 @RestController
 public class BeerController {
 	
@@ -30,7 +31,7 @@ public class BeerController {
 	}
 	
 	@GetMapping("/api/beers")
-	public ResponseEntity<List<Beer>> displayAllBeer()
+	public ResponseEntity<List<BeerResponseModel>> displayAllBeer()
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(beerService.displayAllBeer());
 	}

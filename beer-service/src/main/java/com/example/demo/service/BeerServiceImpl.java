@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Beer;
 import com.example.demo.repo.BeerRepository;
+import com.example.demo.ui.BeerResponseModel;
 
 @Service
 public class BeerServiceImpl implements BeerService {
@@ -19,19 +20,7 @@ public class BeerServiceImpl implements BeerService {
 		
 
 		this.beerRepository = beerRepository;
-		/*
-		 * beerRepository.createBeer(new Beer(1, UUID.randomUUID().toString(), "Beer-1",
-		 * 200.0, true));
-		 * 
-		 * beerRepository.createBeer(new Beer(2, UUID.randomUUID().toString(), "Beer-2",
-		 * 201.0, true)); beerRepository.createBeer(new Beer(3,
-		 * UUID.randomUUID().toString(), "Beer-3", 202.0, false));
-		 * beerRepository.createBeer(new Beer(4, UUID.randomUUID().toString(), "Beer-4",
-		 * 203.0, false)); beerRepository.createBeer(new Beer(5,
-		 * UUID.randomUUID().toString(), "Beer-5", 204.0, true));
-		 * beerRepository.createBeer(new Beer(6, UUID.randomUUID().toString(), "Beer-1",
-		 * 206.0, false));
-		 */
+		
 	}
 
 	@Override
@@ -41,7 +30,7 @@ public class BeerServiceImpl implements BeerService {
 	}
 
 	@Override
-	public List<Beer> displayAllBeer() {
+	public List<BeerResponseModel> displayAllBeer() {
 		// TODO Auto-generated method stub
 		return beerRepository.displayAllBeer();
 	}
