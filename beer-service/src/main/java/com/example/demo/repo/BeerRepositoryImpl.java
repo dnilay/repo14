@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.example.demo.dto.BeerDto;
 import com.example.demo.model.Beer;
 import com.example.demo.ui.BeerResponseModel;
 
@@ -34,12 +35,15 @@ public class BeerRepositoryImpl implements BeerRepository {
 
 	@Override
 	@Transactional
-	public Beer createBeer(Beer beer) {
-		// TODO Auto-generated method stub
-	
-		beer.setBeerId(UUID.randomUUID().toString());
+	public BeerResponseModel createBeer(BeerDto beerDto) {
+		
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		
+		
+		Beer beer= modelMapper.map(beerDto, Beer.class);
 		entityManager.persist(beer);
-		return beer;
+		BeerResponseModel model=modelMapper.map(beer, BeerResponseModel.class);
+		return model;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -62,12 +66,19 @@ public class BeerRepositoryImpl implements BeerRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Beer> getBeerByName(String beerName) {
+	public List<BeerResponseModel> getBeerByName(String beerName) {
 		// TODO Auto-generated method stub
 
-		Query query=entityManager.createQuery("SELECT B.beerId,B.beerName,B.beerPrice,B.isAvailable from Beer B where B.beerName=:bName",Beer.class).setParameter("bName", beerName);
-		
-		return query.getResultList();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		Query query=entityManager.createQuery("SELECT B from Beer B where B.beerName=:bName",Beer.class).setParameter("bName", beerName);
+		List<Beer> beers=query.getResultList();
+		List<BeerResponseModel> beerResponseModelsList=new ArrayList<BeerResponseModel>();
+		Iterator<Beer> i=beers.iterator();
+		while(i.hasNext())
+		{
+			beerResponseModelsList.add(modelMapper.map(i.next(), BeerResponseModel.class));
+		}
+		return beerResponseModelsList;
 	}
 
 }

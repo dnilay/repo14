@@ -11,9 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BeerResponseModel {
-
-	private String beerId;
+public class BeerRequestModel {
 	private String beerName;
 	private Double beerPrice;
 	private Boolean isAvailable;

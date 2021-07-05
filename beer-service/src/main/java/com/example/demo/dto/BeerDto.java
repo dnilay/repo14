@@ -1,4 +1,4 @@
-package com.example.demo.ui;
+package com.example.demo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BeerResponseModel {
-
+public class BeerDto {
 	private String beerId;
 	private String beerName;
 	private Double beerPrice;
