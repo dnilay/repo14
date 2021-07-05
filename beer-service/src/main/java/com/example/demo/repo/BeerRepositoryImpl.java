@@ -45,4 +45,14 @@ public class BeerRepositoryImpl implements BeerRepository {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Beer> getBeerByName(String beerName) {
+		// TODO Auto-generated method stub
+
+		Query query=entityManager.createQuery("SELECT B from Beer B where B.beerName=:bName",Beer.class).setParameter("bName", beerName);
+		return query.getResultList();
+	}
+
 }
