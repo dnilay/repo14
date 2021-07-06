@@ -1,5 +1,9 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +39,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Iterable<UserResponseModel> getAllUsers() {
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		Iterable<UserEntity> uIterable=userRepository.findAll();
+		Iterator<UserEntity> i=uIterable.iterator();
+		List<UserResponseModel> list=new ArrayList<UserResponseModel>();
+		while(i.hasNext())
+		{
+			list.add(modelMapper.map(i.next(), UserResponseModel.class));
+		}
+		return list;
+	}
+
+	@Override
+	public UserEntity findByUserId(String userid) {
+	
 		
-		return null;
+		return userRepository.findByUserId(userid);
 	}
 
 }

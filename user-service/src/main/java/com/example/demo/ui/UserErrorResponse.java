@@ -9,10 +9,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserResponseModel {
-	private String userId;
-	private String firstName;
-	private String lastName;
-	private String email;
+public class UserErrorResponse {
+	
+	private String message;
+	private int statusCode;
+	private Long exceptionTime;
 
 }
