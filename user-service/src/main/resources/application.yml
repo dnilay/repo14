@@ -18,3 +18,7 @@ spring:
     url: jdbc:h2:mem:testDB
     password: sa
     username: sa
+  security:
+    user:
+      name: dev
+      password: 1234
