@@ -7,8 +7,8 @@ import com.example.demo.ui.UserResponseModel;
 public interface UserService {
 	
 	public UserResponseModel createUser(UserDto userDto);
-	
 	public Iterable<UserResponseModel> getAllUsers();
-	public UserEntity findByUserId(String userid);
+	public UserEntity findByUserId(String userId);
+	public UserEntity deleteByUserId(String userId);
 
 }

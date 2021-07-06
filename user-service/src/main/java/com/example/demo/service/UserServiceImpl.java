@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserRepository;
 import com.example.demo.dto.UserDto;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.model.UserEntity;
 import com.example.demo.ui.UserResponseModel;
 
@@ -51,10 +52,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity findByUserId(String userid) {
+	public UserEntity findByUserId(String userId) {
 	
 		
-		return userRepository.findByUserId(userid);
+		return userRepository.findByUserId(userId);
+	}
+
+	@Override
+	public UserEntity deleteByUserId(String userId) {
+		UserEntity entity=findByUserId(userId);
+		if(entity==null)
+		{
+			throw new UserNotFoundException("user with the given id not found");
+		}
+		userRepository.delete(entity);
+		return entity;
 	}
 
 }

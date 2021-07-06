@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +43,7 @@ public class UserController {
 	{
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		UserDto userDto=modelMapper.map(userDetails, UserDto.class);
-		userDto.setUserid(UUID.randomUUID().toString());
+		userDto.setUserId(UUID.randomUUID().toString());
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userDto));
 	}
 	@GetMapping("/users")
@@ -65,5 +66,11 @@ public class UserController {
 	}
 	
 	
+	@DeleteMapping("/users/{userId}")
+	public ResponseEntity<UserResponseModel> deleteUserByUserId(@PathVariable("userId") String userId)
+	{
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		return ResponseEntity.ok(modelMapper.map(userService.deleteByUserId(userId),UserResponseModel.class));
+	}
 
 }

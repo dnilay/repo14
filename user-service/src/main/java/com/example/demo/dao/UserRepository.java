@@ -15,4 +15,5 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	@Query
 	public List<UserEntity> findByFirstName(String firstName);
 
+	public List<UserEntity> findByFirstNameAndLastName(String firstName,String lastName);
 }
