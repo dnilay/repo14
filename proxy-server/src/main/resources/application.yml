@@ -1,0 +1,23 @@
+server:
+  port: 8088
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka    register-with-eureka: true    fetch-registry: true
+spring:
+  application:
+    name: gateway-service
+  cloud.gateway:
+    discovery:
+      locator:
+        enabled: true
+        lowerCaseServiceId: true
+    routes:
+    - id: beer-service
+      uri: lb://BEER-SERVICE
+      predicates:
+        - Path=/beer-service/**
+    - id: movie-service
+      uri: lb://MOVIE-SERVICE
+      predicates:
+        - Path=/movie-service/**  boot:    admin:      client:        url:        - http://localhost:8080/
