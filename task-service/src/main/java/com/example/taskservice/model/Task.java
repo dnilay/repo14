@@ -22,4 +22,10 @@ public class Task {
     private SEVERE_LEVEL severe_level;
     @Column(name = "assignee_name")
     private String assigneeName;
+
+    public Task(String taskId, SEVERE_LEVEL severe_level, String assigneeName) {
+        this.taskId = taskId;
+        this.severe_level = severe_level;
+        this.assigneeName = assigneeName;
+    }
 }
