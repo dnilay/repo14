@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.example.adminserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EurekaServerApplicationTests {
+class AdminServerApplicationTests {
 
     @Test
     void contextLoads() {
