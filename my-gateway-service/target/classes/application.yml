@@ -1,0 +1,31 @@
+server:
+  port: 8088
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:password@localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+spring:
+  application:
+    name: gateway-service
+  cloud.gateway:
+    discovery:
+      locator:
+        enabled: true
+        lowerCaseServiceId: true
+    routes:
+      - id: assignee-service
+        uri: lb://ASSIGNEE-SERVICE
+        predicates:
+          - Path=/assignee-service/**
+      - id: task-service
+        uri: lb://TASK-SERVICE
+        predicates:
+          - Path=/task-service/**
+  boot:
+    admin:
+      client:
+        url:
+          - http://localhost:8888/
+
