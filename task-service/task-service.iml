@@ -126,6 +126,14 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.31" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-openfeign:3.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-openfeign-core:3.0.3" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign.form:feign-form-spring:3.8.0" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign.form:feign-form:3.8.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-core:10.12" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-slf4j:10.12" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.4.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-json:2.4.8" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.11.4" level="project" />

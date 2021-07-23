@@ -8,4 +8,6 @@ public interface AssigneeService {
 
     public Assignee createAssignee(Assignee assignee);
     public List<Assignee> displayAllAsignee();
+
+    public Assignee getAssigneeByName(String assigneeName);
 }

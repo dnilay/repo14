@@ -2,6 +2,7 @@ package com.example.taskservice.controller;
 
 import com.example.taskservice.model.Assignee;
 import com.example.taskservice.model.Task;
+import com.example.taskservice.proxy.AssigneeProxy;
 import com.example.taskservice.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -20,11 +21,13 @@ public class TaskController {
     private TaskService taskService;
     private RestTemplate restTemplate;
     private Environment environment;
+    private AssigneeProxy assigneeProxy;
     @Autowired
-    public TaskController(TaskService taskService,Environment environment,RestTemplate restTemplate) {
+    public TaskController(TaskService taskService,Environment environment,RestTemplate restTemplate,AssigneeProxy assigneeProxy) {
         this.taskService = taskService;
         this.environment=environment;
         this.restTemplate=restTemplate;
+        this.assigneeProxy=assigneeProxy;
     }
     @GetMapping
     public ResponseEntity<String> getStatus()
@@ -33,8 +36,16 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public ResponseEntity<Task> createTask(@RequestBody Task task)
-    {
+    public ResponseEntity<Task> createTask(@RequestBody Task task) throws Exception {
+        Assignee assignee=assigneeProxy.getAssigneeByName(task.getAssigneeName());
+        if(assignee ==null)
+        {
+            throw new Exception("not found assignee name");
+        }
+        if(assignee.getIsAvailable()==false)
+        {
+            throw new Exception("assignee found but not available");
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(task));
     }
 
@@ -50,4 +61,5 @@ public class TaskController {
         List<Assignee> list=restTemplate.getForObject("http://localhost:8088/assignee-service/assignees",List.class);
        return ResponseEntity.ok(list);
     }
+
 }

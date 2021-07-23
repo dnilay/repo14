@@ -25,4 +25,9 @@ private AssigneeDao assigneeDao;
     public List<Assignee> displayAllAsignee() {
         return assigneeDao.findAll();
     }
+
+    @Override
+    public Assignee getAssigneeByName(String assigneeName) {
+        return assigneeDao.findByAssigneeName(assigneeName);
+    }
 }
